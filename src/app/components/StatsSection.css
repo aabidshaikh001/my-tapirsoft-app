@@ -1,0 +1,47 @@
+
+.stats-section {
+    background-color: #0B2958; /* Dark Blue Background */
+  }
+  
+  .stat-item {
+    opacity: 0;
+    transform: scale(0.8); /* Initial scale effect */
+    animation: fadeInUp 1s ease forwards; /* Keyframe animation */
+    transition: transform 0.3s ease-in-out; /* Smooth scaling on hover */
+  }
+  
+  .stat-item h3 {
+    font-size: 2.5rem; /* Font size for numbers */
+  }
+  
+  .stat-item p {
+    font-size: 1.125rem; /* Font size for text */
+    margin-top: 0.5rem;
+  }
+  
+  /* Hover animation for scale effect */
+  .stat-item:hover {
+    transform: scale(1.05);
+  }
+  
+  /* Keyframes for fade-in and scaling */
+  @keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(20px) scale(0.8);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .stat-item h3 {
+      font-size: 2rem; /* Adjust for mobile */
+    }
+    .stat-item p {
+      font-size: 1rem;
+    }
+  }
+  

@@ -1,0 +1,16 @@
+#faq .shadow-lg {
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  #faq .shadow-lg:hover {
+    transform: scale(1.05);
+  }
+  
+  #faq .cursor-pointer {
+    transition: background-color 0.3s ease;
+  }
+  
+  #faq .cursor-pointer:hover {
+    background-color: #f5f5f5;
+  }
+  

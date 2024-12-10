@@ -1,0 +1,38 @@
+.get-started-container {
+    background-color: #f9fafb; /* Light gray background */
+  }
+  
+  .steps-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+  
+  .steps-section .bg-white {
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .steps-section .text-center {
+    text-align: center;
+  }
+  
+  .steps-section .text-4xl {
+    font-size: 2.25rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .steps-section .hover\\:scale-105 {
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .cta-section .text-lg {
+    font-size: 1.125rem;
+  }
+  
+  .cta-section .hover\\:bg-orange-600 {
+    background-color: #dd6b20; /* Darker shade of orange for hover effect */
+  }
+  
