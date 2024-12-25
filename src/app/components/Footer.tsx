@@ -90,7 +90,7 @@ const Footer: React.FC = () => {
           </div>
 
           <div className="text-center md:text-left  mt-4 md:mt-0">
-            <p className="text-gray-700">Phone: <br/>+91 9216262833</p>
+            <p className="text-gray-700">Phone: <br/>+91 2269199247</p>
             <p className="text-gray-700">
               Mail:{' '}
               <a href="mailto:help@tapirsoft.com" className="hover:underline">
