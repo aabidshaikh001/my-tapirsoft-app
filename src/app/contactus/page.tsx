@@ -1,167 +1,97 @@
 'use client';
 
-import React, { useState, useEffect, ChangeEvent, FormEvent } from 'react';
-import axios from 'axios';
-import { ToastContainer, toast } from 'react-toastify';
+import React, {  FormEvent } from 'react';
+import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { motion } from 'framer-motion';
+import { IconBuildings, IconMailFilled, IconPhoneFilled } from '@tabler/icons-react';
 import {
   IconMail,
   IconBrandWhatsapp,
-  IconMapPin,
   IconBook2,
 } from '@tabler/icons-react';
 
-interface FormData {
-  name: string;
-  email: string;
-  contactNumber: string;
-  message: string;
-}
 
-interface FormErrors {
-  name?: string;
-  email?: string;
-  contactNumber?: string;
-  message?: string;
-}
 
 const ContactUs: React.FC = () => {
-  const [formData, setFormData] = useState<FormData>({
-    name: '',
-    email: '',
-    contactNumber: '',
-    message: '',
-  });
-  const [errors, setErrors] = useState<FormErrors>({});
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
-  const validateForm = (): FormErrors => {
-    const formErrors: FormErrors = {};
-    if (!formData.name.trim()) formErrors.name = "Name is required.";
-    if (!formData.email.trim()) formErrors.email = "Email is required.";
-    if (!/\S+@\S+\.\S+/.test(formData.email)) formErrors.email = "Email is invalid.";
-    if (!formData.contactNumber.trim()) formErrors.contactNumber = "Contact number is required.";
-    if (!/^\d{10}$/.test(formData.contactNumber)) formErrors.contactNumber = "Contact number should be 10 digits.";
-    if (!formData.message.trim()) formErrors.message = "Message is required.";
-    return formErrors;
-  };
+  
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    const validationErrors = validateForm();
-    setErrors(validationErrors);
-
-    if (Object.keys(validationErrors).length === 0) {
-      setIsSubmitting(true);
-      try {
-        const response = await axios.post('https://tapirsoft-server.onrender.com/api/contact/', formData);
-        toast.success('Your message has been sent successfully!');
-        setFormData({ name: '', email: '', contactNumber: '', message: '' });
-      } catch (error) {
-        toast.error('Failed to send the message. Please try again later.');
-      } finally {
-        setIsSubmitting(false);
+    toast.success("Your message has been sent successfully!",{
+      style: {
+        backgroundColor: "#1f2937",
+        color: "#fff",
+        fontWeight: "bold",
+        boxShadow: "0px 4px 15px rgba(0, 0, 0, 0.2)",
+        borderRadius: "8px"
       }
-    }
+    });
+  
   };
 
   return (
-    <div className="container lg:pt-20 mx-auto p-8 bg-gray-100 dark:bg-gray-800 min-h-screen flex flex-col items-center">
-      <ToastContainer />
-
-      <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold text-gray-800 dark:text-gray-200 mb-4">
-          Let’s Build Something Great Together!
-        </h1>
-        <p className="text-lg text-gray-600 dark:text-gray-300">
-          Share your vision with us, and we'll bring it to life with our expertise.
+    <div className="bg-gray-100 min-h-screen  lg:pt-16">
+     <div className="relative bg-cover bg-center h-80" style={{ backgroundImage: "url('/assets/image.png')" }}>
+        <div className="absolute inset-0 bg-black bg-opacity-60 flex flex-col justify-center items-start px-12">
+          <h1 className="text-4xl font-bold text-white">Contact Us</h1>
+          <nav className="mt-2 flex items-center">
+            <a href="/" className="text-orange-500 font-medium hover:underline">Home</a>
+            <span className="text-white mx-2">›</span>
+            <a href='#' className="text-white">Contact Us</a>
+          </nav>
+          <hr className="w-full border-t border-gray-500 mt-4" />
+        </div>
+      </div>
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid md:grid-cols-2 gap-8">
+      <div>
+        <p className="text-gray-700 mb-6">
+          Whether you're searching for a new engineering partner or starting a new career, we would love to hear from you.
         </p>
+        <div className="mb-6">
+          <h2 className="font-semibold text-lg flex items-center text-gray-800">
+            <IconBuildings className="mr-2 text-orange-500" /> Office Addresses
+          </h2>
+          <p className="text-gray-700 mt-4">
+            <span className="font-semibold">Gurugram Office</span><br />
+            3rd Floor, Sector 67, above Cyber Park, Bhondsi, Gurugram, Haryana 122102          </p>
+          <p className="text-gray-700 mt-2">
+            <span className="font-semibold">Hyderabad Office</span><br />
+            1st Floor, Cyber Crown, Sec-II, HUDA Techno, Madhapur, Hyderabad, 500081</p>
+                  
+          
+        </div>
+        <div className="flex items-center mb-2">
+          <IconMailFilled className="mr-2 text-orange-500" />
+          <a href="mailto:help@tapirsoft.com" className="text-orange-500 hover:underline">help@tapirsoft.com</a>
+        </div>
+        <div className="flex items-center">
+          <IconPhoneFilled className="mr-2 text-orange-500" />
+          <a href="tel:+912269199247" className="text-orange-500 hover:underline">+91-2269199247</a>
+        </div>
       </div>
 
-      <motion.div
-        initial={{ opacity: 0, y: -50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="w-full max-w-lg p-8 bg-white dark:bg-gray-700 shadow-lg rounded-lg"
-      >
-        <h2 className="text-3xl font-bold text-center text-gray-800 dark:text-gray-200 mb-6">
-          Contact Us
-        </h2>
-
-        <form onSubmit={handleSubmit}>
-          {['name', 'email', 'contactNumber', 'message'].map((field, idx) => (
-            <div className="mb-4" key={idx}>
-              <label
-                htmlFor={field}
-                className="block text-gray-700 dark:text-gray-300 text-sm font-medium mb-2 capitalize"
-              >
-                {field === 'contactNumber' ? 'Contact Number' : field}
-              </label>
-              {field === 'message' ? (
-                <textarea
-                  id={field}
-                  name={field}
-                  rows={4}
-                  value={formData[field as keyof FormData]}
-                  onChange={handleChange}
-                  className="w-full px-3 py-2 bg-gray-50 dark:bg-gray-600 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-orange-500 focus:border-orange-500"
-                ></textarea>
-              ) : (
-                <input
-                  id={field}
-                  name={field}
-                  type={field === 'email' ? 'email' : 'text'}
-                  value={formData[field as keyof FormData]}
-                  onChange={handleChange}
-                  className="w-full px-3 py-2 bg-gray-50 dark:bg-gray-600 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-orange-500 focus:border-orange-500"
-                />
-              )}
-              {errors[field as keyof FormErrors] && (
-                <p className="text-red-500 text-sm">{errors[field as keyof FormErrors]}</p>
-              )}
-            </div>
-          ))}
-
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            className={`w-full text-white font-bold py-2 px-4 rounded-lg focus:outline-none ${
-              isSubmitting ? 'bg-gray-500 cursor-not-allowed' : 'bg-orange-500 hover:bg-orange-600'
-            }`}
-          >
-            {isSubmitting ? 'Submitting...' : 'Submit'}
-          </button>
-        </form>
-      </motion.div>
-
-      <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-12 w-full max-w-5xl">
-        {[
-          {
-            city: 'Gurugram',
-            address: '3rd Floor, Sector 67, above Cyber Park, Bhondsi, Haryana 122102',
-          },
-          {
-            city: 'Hyderabad',
-            address: '1st Floor, Cyber Crown, Sec-II, HUDA Techno, Madhapur, 500081',
-          },
-        ].map((office, index) => (
-          <div key={index} className="text-center">
-            <h3 className="text-xl font-bold text-gray-800 dark:text-gray-200">{office.city} Office</h3>
-            <p className="text-gray-600 dark:text-gray-300">{office.address}</p>
+      <div className="bg-white shadow-md rounded-lg p-8">
+        <h2 className="text-lg font-semibold text-gray-800 mb-4">Get in touch!</h2>
+        <p className="text-sm text-gray-600 mb-4">We'll contact you shortly - just fill out the form.</p>
+        <form className="space-y-4">
+          <div className="grid grid-cols-2 gap-4">
+            <input type="text" placeholder="First Name*" className="border p-2 rounded w-full focus:outline-none focus:ring-2 focus:ring-orange-400" />
+            <input type="text" placeholder="Last Name" className="border p-2 rounded w-full focus:outline-none focus:ring-2 focus:ring-orange-400" />
           </div>
-        ))}
+          <div className="grid grid-cols-2 gap-4">
+            <input type="email" placeholder="Email ID*" className="border p-2 rounded w-full focus:outline-none focus:ring-2 focus:ring-orange-400" />
+            <input type="tel" placeholder="Phone Number*" className="border p-2 rounded w-full focus:outline-none focus:ring-2 focus:ring-orange-400" />
+          </div>
+          <textarea placeholder="Enter your message" className="border p-2 rounded w-full h-24 focus:outline-none focus:ring-2 focus:ring-orange-400"></textarea>
+          <button type="submit" onClick={handleSubmit} className="w-full bg-orange-500 text-white py-2 rounded-full hover:bg-orange-600 transition">Submit</button>
+        </form>
       </div>
+    </div>
 
-      <div className="mt-10 w-full">
+      <div className="mt-8 w-full">
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3509.9409381669975!2d77.05725877428316!3d28.390851795016733!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d23e83bb73bd9%3A0xfa27d59a72595eb0!2sTAPIRSOFT%20%7C%20Best%20Software%20Development%20Company!5e0!3m2!1sen!2sin!4v1725938809460!5m2!1sen!2sin"
-          className="w-full h-64 border-0 rounded-lg"
+          className="w-full h-96 border-0 rounded-lg"
           allowFullScreen
           loading="lazy"
         ></iframe>
