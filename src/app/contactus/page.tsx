@@ -45,7 +45,7 @@ const ContactUs: React.FC = () => {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid md:grid-cols-2 gap-8">
       <div>
         <p className="text-gray-700 mb-6">
-          Whether you're searching for a new engineering partner or starting a new career, we would love to hear from you.
+          Whether you&apos;re searching for a new engineering partner or starting a new career, we would love to hear from you.
         </p>
         <div className="mb-6">
           <h2 className="font-semibold text-lg flex items-center text-gray-800">
@@ -72,7 +72,7 @@ const ContactUs: React.FC = () => {
 
       <div className="bg-white shadow-md rounded-lg p-8">
         <h2 className="text-lg font-semibold text-gray-800 mb-4">Get in touch!</h2>
-        <p className="text-sm text-gray-600 mb-4">We'll contact you shortly - just fill out the form.</p>
+        <p className="text-sm text-gray-600 mb-4">We&apos;ll contact you shortly - just fill out the form.</p>
         <form className="space-y-4">
           <div className="grid grid-cols-2 gap-4">
             <input type="text" placeholder="First Name*" className="border p-2 rounded w-full focus:outline-none focus:ring-2 focus:ring-orange-400" />
